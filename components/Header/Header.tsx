@@ -1,10 +1,12 @@
 import Link from "next/link";
 import styles from "./Header.module.css";
+import layoutStyles from "@/app/layout.module.css";
 
 export default function Header() {
   return (
     <header className={styles.header}>
-        <div className={styles.header_container}>
+        <div className={layoutStyles.container}>
+            <div className={styles.header_container}>
             <div className={styles.header_logo}>
                 <Link href="/">
                     <svg width="136" height="15" className={styles.header_logo}>
@@ -16,6 +18,7 @@ export default function Header() {
                 <Link href="/">Home</Link>
                 <Link href="/catalog">Catalog</Link>
             </div>
+        </div>
         </div>
     </header>
   );

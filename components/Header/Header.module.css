@@ -1,12 +1,12 @@
 .header {
-
+    border-bottom: 1px solid var(--badges);
+    padding: 28px 64px;
 }
 
 .header_container {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 28px 64px;
 }
 
 .header_logo {
