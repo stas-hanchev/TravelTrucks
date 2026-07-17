@@ -4,7 +4,7 @@ import "modern-normalize/modern-normalize.css";
 import "./globals.css";
 import styles from "./layout.module.css";
 import Header from "@/components/Header/Header";
-import TanStackProvider from "@/components/TanStackProvider";
+import TanStackProvider from "@/components/TanStackProvider/TanStackProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
