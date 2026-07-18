@@ -1,45 +1,56 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 import Loader from "@/components/Loader/Loader";
-import { getCampers } from "@/lib/campers-api";
-import type { Camper } from "@/types/camper";
+import { getCamperFilters, getCampers } from "@/lib/campers-api";
+
+import layoutStyles from "@/app/layout.module.css";
+import styles from "./Page.module.css";
+import BookingForm from "@/components/Form/Form";
 
 export default function CatalogPage() {
-  const [campers, setCampers] = useState<Camper[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+    //data, error, isLoading, isError, isSuccess
+  const campersQuery = useQuery({
+    queryKey: ["campers", { page: 1, perPage: 4 }],
+    queryFn: () => getCampers({ page: 1, perPage: 4 }),
+  });
 
-  useEffect(() => {
-    async function loadCampers() {
-      try {
-        setIsLoading(true);
+  const filtersQuery = useQuery({
+    queryKey: ["camper-filters"],
+    queryFn: getCamperFilters,
+  });
 
-        const data = await getCampers({
-          page: 1,
-          perPage: 4,
-        });
-
-        setCampers(data.campers);
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    void loadCampers();
-  }, []);
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+  };
 
   return (
     <main>
-      {isLoading && <Loader />}
+      <section className={styles.catalogSection}>
+        <div
+          className={`${layoutStyles.container} ${styles.catalogLayout}`}
+        >
+          <aside className={styles.catalogFilters}>
+            {filtersQuery.isLoading && <Loader />}
 
-      <ul>
-        {campers.map((camper) => (
-          <li key={camper.id}>{camper.name}</li>
-        ))}
-      </ul>
+            {filtersQuery.data && (
+              <BookingForm filters={filtersQuery.data} onSubmit={handleSubmit} />
+            )}
+          </aside>
+
+          <div className={styles.catalogContent}>
+            {campersQuery.isLoading && <Loader />}
+
+            <ul>
+              {campersQuery.data?.campers.map((camper) => (
+                <li key={camper.id}>{camper.name}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

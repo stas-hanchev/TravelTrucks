@@ -1,0 +1,28 @@
+.catalogSection {
+  padding: 48px 0;
+}
+
+.catalogLayout {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  gap: 32px;
+}
+
+.catalogFilters {
+  border-radius: 20px;
+  padding: 24px;
+  width: 360px;
+  height: 840px;
+  background-color: #f7f7f7;
+}
+
+.catalogContent {
+  min-width: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .catalogLayout {
+    grid-template-columns: 1fr;
+  }
+}

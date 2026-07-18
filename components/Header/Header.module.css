@@ -1,12 +1,23 @@
 .header {
     border-bottom: 1px solid var(--badges);
-    padding: 28px 64px;
+}
+
+.home_header {
+    background-color: #fff;
+}
+
+.catalog_header {
+    background-color: #f7f7f7;
 }
 
 .header_container {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    border-bottom: 1px solid var(--badges);
+    padding: 24px 64px;
+    max-width: 1440px;
+    height: 72px;
 }
 
 .header_logo {

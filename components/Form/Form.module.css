@@ -1,0 +1,85 @@
+.location_input_container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.label {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #6c717b;
+    margin-bottom: 8px;
+}
+
+.city_input {
+    border-radius: 12px;
+    padding: 16px 0px 16px 48px;
+    width: 312px;
+    height: 56px;
+    background: #fff;
+    outline: none;
+    border: 0px solid #d0d5dd;
+}
+
+.location_input_icon_container {
+  position: relative;
+  width: 100%;
+}
+
+.location_icon {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  color: #101828;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+.filters {
+    margin-bottom: 48px;
+}
+
+.filters_title {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    color: #101828;
+    margin-bottom: 24px;
+}
+
+.filter_value_container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.filter_title_label {
+    font-family: "Inter", sans-serif;;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #6c717b;
+    margin-bottom: 8px;
+}
+
+.filter_container {
+    margin-bottom: 24px;
+}
+
+.radio_input {
+    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+    accent-color: #475467;
+    cursor: pointer;
+}
+
+.buttons_container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
