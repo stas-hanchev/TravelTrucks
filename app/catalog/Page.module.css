@@ -5,6 +5,7 @@
 .catalogLayout {
   display: flex;
   flex-direction: row;
+  justify-content: start;
   align-items: start;
   gap: 32px;
 }
@@ -19,10 +20,19 @@
 
 .catalogContent {
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media screen and (max-width: 767px) {
-  .catalogLayout {
-    grid-template-columns: 1fr;
-  }
+.load_more_button {
+    border: 1px solid #dadde1 !important;
+    border-radius: 200px;
+    width: 145px;
+    height: 56px;
+    background: #fff;
+}
+
+.load_more_button:hover {
+  border: 1px solid #6d7b75;
 }

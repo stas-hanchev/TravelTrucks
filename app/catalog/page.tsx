@@ -1,56 +1,77 @@
-"use client";
+'use client'
 
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 
-import Loader from "@/components/Loader/Loader";
-import { getCamperFilters, getCampers } from "@/lib/campers-api";
+import Loader from '@/components/Loader/Loader'
+import { getCamperFilters, getCampers } from '@/lib/campers-api'
 
-import layoutStyles from "@/app/layout.module.css";
-import styles from "./Page.module.css";
-import BookingForm from "@/components/Form/Form";
+import layoutStyles from '@/app/layout.module.css'
+import styles from './Page.module.css'
+import BookingForm from '@/components/Form/Form'
+import CamperList from '@/components/CamperList/CamperList'
+import { CampersResponse } from '@/types/camper'
+import Button from '@/components/Button/Button'
 
 export default function CatalogPage() {
+    // isFetchin, isFetching, isFetchingNextPage, isError, isLoading
+    const campersQuery = useInfiniteQuery({
+        queryKey: ['campers', { page: 1, perPage: 4 }],
+        queryFn: ({ queryKey, pageParam }) => {
+            return getCampers({ page: pageParam, perPage: 4 })
+        },
+        initialPageParam: 1,
+        getNextPageParam: (lastResponse: CampersResponse) => {
+            const nextPage = lastResponse.page + 1
+            return nextPage < lastResponse.totalPages ? nextPage : undefined
+        },
+        select: (data) => {
+            return {
+                ...data,
+                campers: data.pages.flatMap((page) => page.campers),
+            }
+        },
+    })
+
+    const campers = campersQuery.data?.campers ?? [];
+    const hasCampers = campers.length > 0;
+
     //data, error, isLoading, isError, isSuccess
-  const campersQuery = useQuery({
-    queryKey: ["campers", { page: 1, perPage: 4 }],
-    queryFn: () => getCampers({ page: 1, perPage: 4 }),
-  });
+    const filtersQuery = useQuery({
+        queryKey: ['camper-filters'],
+        queryFn: getCamperFilters,
+    })
 
-  const filtersQuery = useQuery({
-    queryKey: ["camper-filters"],
-    queryFn: getCamperFilters,
-  });
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault()
+        const form = event.currentTarget
+    }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-  };
+    return (
+        <main className={layoutStyles.catalog_main}>
+            <section className={styles.catalogSection}>
+                <div
+                    className={`${layoutStyles.container} ${styles.catalogLayout}`}
+                >
+                    <aside className={styles.catalogFilters}>
+                        {filtersQuery.isLoading && <Loader />}
 
-  return (
-    <main className={layoutStyles.catalog_main}>
-      <section className={styles.catalogSection}>
-        <div
-          className={`${layoutStyles.container} ${styles.catalogLayout}`}
-        >
-          <aside className={styles.catalogFilters}>
-            {filtersQuery.isLoading && <Loader />}
+                        {filtersQuery.data && (
+                            <BookingForm
+                                filters={filtersQuery.data}
+                                onSubmit={handleSubmit}
+                            />
+                        )}
+                    </aside>
 
-            {filtersQuery.data && (
-              <BookingForm filters={filtersQuery.data} onSubmit={handleSubmit} />
-            )}
-          </aside>
-
-          <div className={styles.catalogContent}>
-            {campersQuery.isLoading && <Loader />}
-
-            <ul>
-              {campersQuery.data?.campers.map((camper) => (
-                <li key={camper.id}>{camper.name}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+                    <div className={styles.catalogContent}>
+                        {campersQuery.isLoading && <Loader />}
+                        {hasCampers && (
+                            <CamperList campers={campers} />
+                        )}
+                        <Button className={styles.load_more_button} onClick={() => campersQuery.fetchNextPage()}>Load more</Button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    )
 }
