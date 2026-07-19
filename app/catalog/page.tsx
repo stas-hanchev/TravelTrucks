@@ -9,15 +9,22 @@ import layoutStyles from '@/app/layout.module.css'
 import styles from './Page.module.css'
 import BookingForm from '@/components/Form/Form'
 import CamperList from '@/components/CamperList/CamperList'
-import { CampersResponse } from '@/types/camper'
+import { CampersResponse, GetCampersParams } from '@/types/camper'
 import Button from '@/components/Button/Button'
+import { useState } from 'react'
 
 export default function CatalogPage() {
+  const [filters, setFilters] = useState<GetCampersParams>({});
+
     // isFetchin, isFetching, isFetchingNextPage, isError, isLoading
     const campersQuery = useInfiniteQuery({
-        queryKey: ['campers', { page: 1, perPage: 4 }],
-        queryFn: ({ queryKey, pageParam }) => {
-            return getCampers({ page: pageParam, perPage: 4 })
+        queryKey: ['campers', { page: 1, perPage: 4 }, filters],
+        queryFn: ({ pageParam }) => {
+            return getCampers({
+              ...filters,
+              page: pageParam,
+              perPage: 4
+            })
         },
         initialPageParam: 1,
         getNextPageParam: (lastResponse: CampersResponse) => {
@@ -41,9 +48,10 @@ export default function CatalogPage() {
         queryFn: getCamperFilters,
     })
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
-        const form = event.currentTarget
+    const handleSubmit = async (formData: FormData) => {
+      const requestData = Object.fromEntries(formData.entries());
+      console.log(requestData);
+      setFilters(requestData);
     }
 
     return (

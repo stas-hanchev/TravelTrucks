@@ -8,12 +8,12 @@ import Button from '../Button/Button'
 
 interface FormProps {
     filters: CamperFilters
-    onSubmit: (event: React.FormEvent<HTMLFormElement>) => void
+    onSubmit: (formData: FormData) => void
 }
 
 export default function BookingForm({ filters, onSubmit }: FormProps) {
     return (
-        <form onSubmit={onSubmit}>
+        <form action={onSubmit}>
             <div className={styles.location_input_container}>
                 <label htmlFor="location" className={styles.label}>
                     Location
@@ -30,7 +30,7 @@ export default function BookingForm({ filters, onSubmit }: FormProps) {
                     <input
                         id="location"
                         type="text"
-                        name="city"
+                        name="location"
                         placeholder="City"
                         className={styles.city_input}
                     />
@@ -49,7 +49,7 @@ export default function BookingForm({ filters, onSubmit }: FormProps) {
                                 <input
                                     key={value}
                                     type="radio"
-                                    name={filterName}
+                                    name={makeSingular(filterName)}
                                     value={value}
                                     id={value}
                                     className={styles.radio_input}
