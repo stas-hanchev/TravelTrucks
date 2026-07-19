@@ -6,6 +6,14 @@
     margin-right: auto;
 }
 
+.home_main {
+    padding-top: 80px;
+}
+
+.catalog_main {
+    padding-top: 80px;
+}
+
 @media screen and (min-width: 768px) {
     .container {
         max-width: 768px;

@@ -83,3 +83,12 @@
     flex-direction: column;
     gap: 16px;
 }
+
+.close_icon {
+    position: absolute;
+    stroke-width: 1.50px;
+    stroke: #000;
+    top: 50%;
+    left: 98px;
+    transform: translateY(-50%);
+}

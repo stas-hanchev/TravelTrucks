@@ -27,7 +27,7 @@ export default function CatalogPage() {
   };
 
   return (
-    <main>
+    <main className={layoutStyles.catalog_main}>
       <section className={styles.catalogSection}>
         <div
           className={`${layoutStyles.container} ${styles.catalogLayout}`}

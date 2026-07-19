@@ -67,6 +67,13 @@ export default function BookingForm({ filters, onSubmit }: FormProps) {
                     Search
                 </Button>
                 <Button className={buttonStyles.form_clear_button} type='reset'>
+                    <svg
+                        width="24"
+                        height="24"
+                        className={styles.close_icon}
+                    >
+                        <use href="/icon-sprite.svg#icon-icon-close"></use>
+                    </svg>
                     Clear filters
                 </Button>
             </div>

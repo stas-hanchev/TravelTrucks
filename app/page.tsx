@@ -1,13 +1,18 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
+
 import layoutStyles from '@/app/layout.module.css'
 import styles from './page.module.css'
 import buttonStyles from '@/components/Button/Button.module.css'
+
 import Button from '@/components/Button/Button'
 
 export default function Home() {
+    const router = useRouter()
+
     return (
-        <main>
+        <main className={layoutStyles.home_main}>
             <section className={styles.hero_section}>
                 <div className={layoutStyles.container}>
                     <div className={styles.hero_content}>
@@ -19,7 +24,7 @@ export default function Home() {
                         </p>
                         <Button
                             className={buttonStyles.hero_button}
-                            onClick={() => console.log('Hero button clicked!')}
+                            onClick={() => router.push('/catalog')}
                         >
                             View Now
                         </Button>
