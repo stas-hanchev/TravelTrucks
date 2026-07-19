@@ -12,6 +12,7 @@ import CamperList from '@/components/CamperList/CamperList'
 import { CampersResponse, GetCampersParams } from '@/types/camper'
 import Button from '@/components/Button/Button'
 import { useState } from 'react'
+import NoCampersFound from '@/components/NoCampersFound/NoCampersFound'
 
 export default function CatalogPage() {
   const [filters, setFilters] = useState<GetCampersParams>({});
@@ -73,10 +74,14 @@ export default function CatalogPage() {
 
                     <div className={styles.catalogContent}>
                         {campersQuery.isLoading && <Loader />}
-                        {hasCampers && (
-                            <CamperList campers={campers} />
-                        )}
-                        <Button className={styles.load_more_button} onClick={() => campersQuery.fetchNextPage()}>Load more</Button>
+                        {hasCampers ? (
+                          <>
+                          <CamperList campers={campers} />
+                            <Button className={styles.load_more_button} onClick={() => campersQuery.fetchNextPage()}>Load more</Button>
+                          </>
+                        ) :
+                          <NoCampersFound></NoCampersFound>
+                        }
                     </div>
                 </div>
             </section>
