@@ -51,9 +51,16 @@ export default function CatalogPage() {
 
     const handleSubmit = async (formData: FormData) => {
       const requestData = Object.fromEntries(formData.entries());
-      console.log(requestData);
       setFilters(requestData);
-    }
+    };
+
+    const clearFilter = () => {
+        setFilters({ page: 1, perPage: 4 });
+    };
+
+    const viewAllCampers = () => {
+        setFilters({ page: 1, perPage: 4 });
+    };
 
     return (
         <main className={layoutStyles.catalog_main}>
@@ -80,7 +87,7 @@ export default function CatalogPage() {
                             <Button className={styles.load_more_button} onClick={() => campersQuery.fetchNextPage()}>Load more</Button>
                           </>
                         ) :
-                          <NoCampersFound></NoCampersFound>
+                          <NoCampersFound clearFilters={clearFilter} viewAllCampers={viewAllCampers}></NoCampersFound>
                         }
                     </div>
                 </div>

@@ -31,4 +31,49 @@
     line-height: 150%;
     text-align: center;
     color: #101828;
+    margin-top: 0;
+    margin-bottom: 43px;
+}
+
+.btns_container {
+    display: flex;
+    gap: 16px;
+}
+
+.close_icon {
+    position: absolute;
+    stroke-width: 1.50px;
+    stroke: #000;
+    top: 50%;
+    left: 38px;
+    transform: translateY(-50%);
+}
+
+.btn_clear_filters {
+    font-family: "Inter", sans-serif;
+    padding-left: 66px !important;
+    border: 1px solid #dadde1;
+    border-radius: 200px;
+    padding: 16px 32px;
+    width: 192px;
+    height: 56px;
+    background: #fff;
+    position: relative;
+}
+
+.btn_view_all {
+    font-family: "Inter", sans-serif;;
+    border-radius: 200px;
+    width: 192px;
+    height: 56px;
+    color:  #fff;
+    background:  #829b91;
+}
+
+.btn_view_all:hover {
+    background: #6d7b75;
+}
+
+.btn_clear_filters:hover {
+    border: 1px solid #6d7b75;
 }
