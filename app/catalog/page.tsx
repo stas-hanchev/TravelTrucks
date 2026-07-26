@@ -7,7 +7,7 @@ import { getCamperFilters, getCampers } from '@/lib/campers-api'
 
 import layoutStyles from '@/app/layout.module.css'
 import styles from './Page.module.css'
-import BookingForm from '@/components/Form/Form'
+import FiltersForm from '@/components/FiltersForm/FiltersForm'
 import CamperList from '@/components/CamperList/CamperList'
 import { CampersResponse, GetCampersParams } from '@/types/camper'
 import Button from '@/components/Button/Button'
@@ -72,7 +72,7 @@ export default function CatalogPage() {
                         {filtersQuery.isLoading && <Loader />}
 
                         {filtersQuery.data && (
-                            <BookingForm
+                            <FiltersForm
                                 filters={filtersQuery.data}
                                 onSubmit={handleSubmit}
                             />

@@ -1,0 +1,124 @@
+.camper_section {
+    margin-top: 64px;
+}
+
+.camper_info_container {
+    display: flex;
+    gap: 24px;
+}
+
+.camper_info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.main_picture_container {
+    margin-bottom: 27px;
+}
+
+.main_picture {
+    border-radius: 17px;
+    width: 638px;
+    height: 505px;
+}
+
+.remaining_pictures_container {
+    display: flex;
+    gap: 32px;
+}
+
+.remaining_images {
+    border: 3px solid var(--grey-green);
+    border-radius: 16px;
+    width: 136px;
+    height: 144px;
+}
+
+.camper_desc_container {
+    border-radius: 16px;
+    padding: 24px;
+    width: 650px;
+    height: 304px;
+    background: #f7f7f7;
+}
+
+.camper_name {
+    margin-top: 0px;
+    margin-bottom: 8px;
+}
+
+.reviews_and_location {
+    display: flex;
+    align-items: center;
+    height: 24px !important;
+    margin-bottom: 16px;
+}
+
+.star {
+    width: 15px;
+    height: 14px;
+    fill: #ffc531;
+    margin-right: 4px;
+}
+
+.rating {
+    margin-right: 16px;
+}
+
+.location_icon {
+    fill: #101828;
+    margin-right: 4px;
+}
+
+.location {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #101828;
+}
+
+.price {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 133%;
+    color: #101828;
+    margin-top: 0;
+}
+
+.description {
+    font-family: "Inter", sans-serif;;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #475467;
+}
+
+.camper_details_container {
+    border-radius: 16px;
+    padding: 24px;
+    width: 650px;
+    height: 360px;
+    background: #f7f7f7;
+}
+
+.vehicle_details_heading {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.characteristics_container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.characteristic_container {
+  border-radius: 100px;
+  padding: 12px 18px;
+  height: 48px;
+  background: #f2f4f7;;
+}

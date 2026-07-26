@@ -1,4 +1,4 @@
-import styles from './Form.module.css'
+import styles from './FiltersForm.module.css'
 import buttonStyles from '@/components/Button/Button.module.css'
 
 import { CamperFilters } from '@/types/camper'
@@ -11,7 +11,7 @@ interface FormProps {
     onSubmit: (formData: FormData) => void
 }
 
-export default function BookingForm({ filters, onSubmit }: FormProps) {
+export default function FiltersForm({ filters, onSubmit }: FormProps) {
     return (
         <form action={onSubmit}>
             <div className={styles.location_input_container}>

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { FaStar } from 'react-icons/fa'
 
 import { Camper } from '@/types/camper'
@@ -8,6 +9,8 @@ import styles from './CamperCard.module.css'
 import Button from '../Button/Button';
 
 export default function CamperCard({ camper }: { camper: Camper }) {
+    const router = useRouter()
+
     return (
         <div className={styles.camper_card}>
             <Image
@@ -79,7 +82,7 @@ export default function CamperCard({ camper }: { camper: Camper }) {
                         <p>{makeFisrtUpperCase(makeSpaceSeparated(camper.form))}</p>
                     </div>
                 </div>
-                <Button className={styles.card_button}>Show more</Button>
+                <Button className={styles.card_button} onClick={() => { router.push(`/catalog/${camper.id}`) }}>Show more</Button>
             </div>
         </div>
     )
