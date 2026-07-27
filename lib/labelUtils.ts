@@ -22,3 +22,7 @@ export function replaceServerIntoUiName(str: string): string {
     return str;
   }
 }
+
+export function getFirstUpperCase(str: string): string {
+  return str.slice(0, 1).toLocaleUpperCase();
+}
