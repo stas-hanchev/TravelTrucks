@@ -1,0 +1,16 @@
+.star_container {
+    display: flex;
+    gap: 4px;
+}
+
+.filled_star {
+  width: 15px;
+  height: 14px;
+  fill: #ffc531;
+}
+
+.empty_star {
+  width: 15px;
+  height: 14px;
+  fill: #dadde1;
+}

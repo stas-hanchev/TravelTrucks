@@ -174,13 +174,37 @@
     padding: 16px;
     width: 623px;
     background: #f7f7f7;
+}
+
+.avatar_name_rating_container {
     display: flex;
+    gap: 16px;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .name_and_rating_container {
-
+    padding: 8px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
-.reviwer_image {
+.reviewer_name {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 150%;
+    color: #101828;
+    margin: 0;
+}
 
+.comment {
+    font-family: "Inter", sans-serif;;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #475467;
+    margin-top: 16px;
+    margin-bottom: 0;
 }

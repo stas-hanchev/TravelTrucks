@@ -1,22 +1,25 @@
 import Image from 'next/image'
 import { FaStar } from 'react-icons/fa'
 
+import LiteralAvatar from '@/components/LiteralAvatar/LiteralAvatar'
+import StarRating from '@/components/StarRating/StarRating'
+import CamperGallery from '@/components/CamperGallery/CamperGallery'
+
 import { getCamperById, getCamperReviews } from '@/lib/campers-api'
 import { makeSpaceSeparated, makeFisrtUpperCase } from '@/lib/labelUtils'
 
 import styles from './Page.module.css'
 import layoutStyles from '@/app/layout.module.css'
-import LiteralAvatar from '@/components/LiteralAvatar/LiteralAvatar'
 
 interface CamperPageProps {
     params: Promise<{ id: string }>
 }
 
 export default async function CamperPage({ params }: CamperPageProps) {
-    const { id } = await params;
+    const { id } = await params
 
-    const camper = await getCamperById(id);
-    const reviews = await getCamperReviews(id);
+    const camper = await getCamperById(id)
+    const reviews = await getCamperReviews(id)
 
     return (
         <main className={layoutStyles.camper_main}>
@@ -26,31 +29,7 @@ export default async function CamperPage({ params }: CamperPageProps) {
                 >
                     <div className={styles.upper_part}>
                         <div className={styles.gallery}>
-                            <div className={styles.main_picture_container}>
-                                <Image
-                                    className={styles.main_picture}
-                                    width={638}
-                                    height={505}
-                                    src={camper.gallery[0].original}
-                                    alt="Main camper image"
-                                ></Image>
-                            </div>
-                            <div
-                                className={styles.remaining_pictures_container}
-                            >
-                                {camper.gallery.map((element) => {
-                                    return (
-                                        <Image
-                                            key={element.id}
-                                            className={styles.remaining_images}
-                                            src={element.thumb}
-                                            width={136}
-                                            height={144}
-                                            alt="Camper image"
-                                        ></Image>
-                                    )
-                                })}
-                            </div>
+                            <CamperGallery images={camper.gallery} camperName={camper.name}></CamperGallery>
                         </div>
 
                         <div className={styles.camper_info}>
@@ -173,13 +152,36 @@ export default async function CamperPage({ params }: CamperPageProps) {
 
                     <div className={styles.reviews}>
                         <h2 className={styles.reviews_heading}>Reviews</h2>
-                        {reviews.map(element => {
-                            return (<div key={element.id} className={styles.review_container}>
-                                <div className={styles.name_and_rating_container}>
-                                    <LiteralAvatar name={element.reviewer_name}></LiteralAvatar>
-                                    
-                                </div>    
-                            </div>);
+                        {reviews.map((element) => {
+                            return (
+                                <div
+                                    key={element.id}
+                                    className={styles.review_container}
+                                >
+                                    <div
+                                        className={
+                                            styles.avatar_name_rating_container
+                                        }
+                                    >
+                                        <LiteralAvatar
+                                            name={element.reviewer_name}
+                                        ></LiteralAvatar>
+                                        <div
+                                            className={
+                                                styles.name_and_rating_container
+                                            }
+                                        >
+                                            <p className={styles.reviewer_name}>
+                                                {element.reviewer_name}
+                                            </p>
+                                            <StarRating
+                                                score={element.reviewer_rating}
+                                            ></StarRating>
+                                        </div>
+                                    </div>
+                                    <p className={styles.comment}>{element.comment}</p>
+                                </div>
+                            )
                         })}
                     </div>
 
