@@ -10,7 +10,13 @@
 
 .upper_part {
     display: flex;
-    gap: 88px;
+    gap: 24px;
+}
+
+.lower_part {
+    display: flex;
+    gap: 48px;
+    margin-bottom: 278px;
 }
 
 .camper_info {
@@ -208,3 +214,4 @@
     margin-top: 16px;
     margin-bottom: 0;
 }
+

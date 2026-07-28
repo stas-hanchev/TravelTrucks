@@ -1,6 +1,6 @@
 export function makeFisrtUpperCase(str: string): string {
   if (!str) return str;
-  if (str === 'ac') return str.toUpperCase();
+  if (str === 'ac' || str === 'tv') return str.toUpperCase();
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 

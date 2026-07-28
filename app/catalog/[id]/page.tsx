@@ -1,15 +1,17 @@
-import Image from 'next/image'
 import { FaStar } from 'react-icons/fa'
-
 import LiteralAvatar from '@/components/LiteralAvatar/LiteralAvatar'
 import StarRating from '@/components/StarRating/StarRating'
 import CamperGallery from '@/components/CamperGallery/CamperGallery'
 
 import { getCamperById, getCamperReviews } from '@/lib/campers-api'
 import { makeSpaceSeparated, makeFisrtUpperCase } from '@/lib/labelUtils'
+import { BookingFormValues } from '@/types/form'
 
 import styles from './Page.module.css'
 import layoutStyles from '@/app/layout.module.css'
+import BookingForm from '@/components/BookingForm/BookingForm'
+
+import { FormikHelpers } from "formik";
 
 interface CamperPageProps {
     params: Promise<{ id: string }>
@@ -29,7 +31,10 @@ export default async function CamperPage({ params }: CamperPageProps) {
                 >
                     <div className={styles.upper_part}>
                         <div className={styles.gallery}>
-                            <CamperGallery images={camper.gallery} camperName={camper.name}></CamperGallery>
+                            <CamperGallery
+                                images={camper.gallery}
+                                camperName={camper.name}
+                            ></CamperGallery>
                         </div>
 
                         <div className={styles.camper_info}>
@@ -150,42 +155,54 @@ export default async function CamperPage({ params }: CamperPageProps) {
                         </div>
                     </div>
 
-                    <div className={styles.reviews}>
-                        <h2 className={styles.reviews_heading}>Reviews</h2>
-                        {reviews.map((element) => {
-                            return (
-                                <div
-                                    key={element.id}
-                                    className={styles.review_container}
-                                >
+                    <div className={styles.lower_part}>
+                        <div className={styles.reviews}>
+                            <h2 className={styles.reviews_heading}>Reviews</h2>
+                            {reviews.map((element) => {
+                                return (
                                     <div
-                                        className={
-                                            styles.avatar_name_rating_container
-                                        }
+                                        key={element.id}
+                                        className={styles.review_container}
                                     >
-                                        <LiteralAvatar
-                                            name={element.reviewer_name}
-                                        ></LiteralAvatar>
                                         <div
                                             className={
-                                                styles.name_and_rating_container
+                                                styles.avatar_name_rating_container
                                             }
                                         >
-                                            <p className={styles.reviewer_name}>
-                                                {element.reviewer_name}
-                                            </p>
-                                            <StarRating
-                                                score={element.reviewer_rating}
-                                            ></StarRating>
+                                            <LiteralAvatar
+                                                name={element.reviewer_name}
+                                            ></LiteralAvatar>
+                                            <div
+                                                className={
+                                                    styles.name_and_rating_container
+                                                }
+                                            >
+                                                <p
+                                                    className={
+                                                        styles.reviewer_name
+                                                    }
+                                                >
+                                                    {element.reviewer_name}
+                                                </p>
+                                                <StarRating
+                                                    score={
+                                                        element.reviewer_rating
+                                                    }
+                                                ></StarRating>
+                                            </div>
                                         </div>
+                                        <p className={styles.comment}>
+                                            {element.comment}
+                                        </p>
                                     </div>
-                                    <p className={styles.comment}>{element.comment}</p>
-                                </div>
-                            )
-                        })}
-                    </div>
+                                )
+                            })}
+                        </div>
 
-                    <div className={styles.booking_form}></div>
+                        <div className={styles.booking_form}>
+                            <BookingForm></BookingForm>
+                        </div>
+                    </div>
                 </div>
             </section>
         </main>

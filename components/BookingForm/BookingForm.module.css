@@ -1,0 +1,64 @@
+.form_container {
+    border: 1px solid #dadde1;
+    border-radius: 16px;
+    padding: 44px;
+    width: 641px;
+    height: 382px;
+    margin-top: 75px;
+}
+
+.form_heading {
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 120%;
+    color: #101828;
+    margin: 0 0 8px 0;
+}
+
+.form_paragraph {
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: #6c717b;
+    margin: 0 0 24px 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.username_input {
+    border-radius: 12px;
+    padding: 18px 337px 18px 18px;
+    width: 527px;
+    height: 60px;
+    background: #f7f7f7;
+    border: none;
+}
+
+.email_input {
+    border-radius: 12px;
+    padding: 18px 337px 18px 18px;
+    width: 527px;
+    height: 60px;
+    background: #f7f7f7;
+    border: none;
+    margin-bottom: 24px;
+}
+
+.send_btn {
+    border-radius: 200px;
+    padding: 16px 60px;
+    width: 527px;
+    height: 56px;
+    background: #829b91;
+    color: #f7f7f7;
+}
+
+.error {
+    
+}
