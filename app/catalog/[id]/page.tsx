@@ -10,8 +10,6 @@ import styles from './Page.module.css'
 import layoutStyles from '@/app/layout.module.css'
 import BookingForm from '@/components/BookingForm/BookingForm'
 
-import { FormikHelpers } from "formik";
-
 interface CamperPageProps {
     params: Promise<{ id: string }>
 }
