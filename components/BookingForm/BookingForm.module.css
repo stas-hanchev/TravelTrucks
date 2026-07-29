@@ -3,7 +3,6 @@
     border-radius: 16px;
     padding: 44px;
     width: 641px;
-    height: 382px;
     margin-top: 75px;
 }
 
@@ -33,7 +32,7 @@
 
 .username_input {
     border-radius: 12px;
-    padding: 18px 337px 18px 18px;
+    padding: 18px;
     width: 527px;
     height: 60px;
     background: #f7f7f7;
@@ -42,12 +41,11 @@
 
 .email_input {
     border-radius: 12px;
-    padding: 18px 337px 18px 18px;
+    padding: 18px;
     width: 527px;
     height: 60px;
     background: #f7f7f7;
     border: none;
-    margin-bottom: 24px;
 }
 
 .send_btn {
@@ -57,8 +55,88 @@
     height: 56px;
     background: #829b91;
     color: #f7f7f7;
+    margin-top: 24px;
+}
+
+.username_input,
+.email_input {
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: #101828;
+    outline: none;
+}
+
+.field_group {
+    width: 527px;
+}
+
+.input_wrapper {
+    position: relative;
+    width: 527px;
+}
+
+.field_label {
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    z-index: 2;
+
+    padding: 0 4px;
+    background: #fff;
+
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #6c717b;
+}
+
+.input_error {
+    border: 1px solid #ff4d55;
+    background: #ffe3e3;
+}
+
+.input_wrapper_error .field_label {
+    color: #ff4d55;
+    background: #ffe3e3;
+}
+
+.error_icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 18px;
+    width: 20px;
+    height: 20px;
+    color: #ff3448;
+    pointer-events: none;
 }
 
 .error {
-    
+    display: block;
+    margin-top: 2px;
+
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #ff3448;
+}
+
+.error_label {
+    top: -20%;
+    left: 3%;
+    position: absolute;
+    border-radius: 8px;
+    padding: 0px 8px;
+    width: 54px;
+    height: 16px;
+    background: #ffdfdf;
+    font-family: var(--second-family);
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 133%;
+    color: #ec383b;
 }

@@ -5,7 +5,6 @@ import CamperGallery from '@/components/CamperGallery/CamperGallery'
 
 import { getCamperById, getCamperReviews } from '@/lib/campers-api'
 import { makeSpaceSeparated, makeFisrtUpperCase } from '@/lib/labelUtils'
-import { BookingFormValues } from '@/types/form'
 
 import styles from './Page.module.css'
 import layoutStyles from '@/app/layout.module.css'
@@ -18,10 +17,10 @@ interface CamperPageProps {
 }
 
 export default async function CamperPage({ params }: CamperPageProps) {
-    const { id } = await params
+    const { id } = await params;
 
-    const camper = await getCamperById(id)
-    const reviews = await getCamperReviews(id)
+    const camper = await getCamperById(id);
+    const reviews = await getCamperReviews(id);
 
     return (
         <main className={layoutStyles.camper_main}>
@@ -200,7 +199,7 @@ export default async function CamperPage({ params }: CamperPageProps) {
                         </div>
 
                         <div className={styles.booking_form}>
-                            <BookingForm></BookingForm>
+                            <BookingForm camperId={id}></BookingForm>
                         </div>
                     </div>
                 </div>
