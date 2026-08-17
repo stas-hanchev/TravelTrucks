@@ -15,16 +15,16 @@ import { useState } from 'react'
 import NoCampersFound from '@/components/NoCampersFound/NoCampersFound'
 
 export default function CatalogPage() {
-  const [filters, setFilters] = useState<GetCampersParams>({});
+    const [filters, setFilters] = useState<GetCampersParams>({})
 
     // isFetchin, isFetching, isFetchingNextPage, isError, isLoading
     const campersQuery = useInfiniteQuery({
         queryKey: ['campers', { page: 1, perPage: 4 }, filters],
         queryFn: ({ pageParam }) => {
             return getCampers({
-              ...filters,
-              page: pageParam,
-              perPage: 4
+                ...filters,
+                page: pageParam,
+                perPage: 4,
             })
         },
         initialPageParam: 1,
@@ -40,8 +40,8 @@ export default function CatalogPage() {
         },
     })
 
-    const campers = campersQuery.data?.campers ?? [];
-    const hasCampers = campers.length > 0;
+    const campers = campersQuery.data?.campers ?? []
+    const hasCampers = campers.length > 0
 
     //data, error, isLoading, isError, isSuccess
     const filtersQuery = useQuery({
@@ -50,17 +50,17 @@ export default function CatalogPage() {
     })
 
     const handleSubmit = async (formData: FormData) => {
-      const requestData = Object.fromEntries(formData.entries());
-      setFilters(requestData);
-    };
+        const requestData = Object.fromEntries(formData.entries())
+        setFilters(requestData)
+    }
 
     const clearFilter = () => {
-        setFilters({ page: 1, perPage: 4 });
-    };
+        setFilters({ page: 1, perPage: 4 })
+    }
 
     const viewAllCampers = () => {
-        setFilters({ page: 1, perPage: 4 });
-    };
+        setFilters({ page: 1, perPage: 4 })
+    }
 
     return (
         <main className={layoutStyles.catalog_main}>
@@ -82,13 +82,21 @@ export default function CatalogPage() {
                     <div className={styles.catalogContent}>
                         {campersQuery.isLoading && <Loader />}
                         {hasCampers ? (
-                          <>
-                          <CamperList campers={campers} />
-                            <Button className={styles.load_more_button} onClick={() => campersQuery.fetchNextPage()}>Load more</Button>
-                          </>
-                        ) :
-                          <NoCampersFound clearFilters={clearFilter} viewAllCampers={viewAllCampers}></NoCampersFound>
-                        }
+                            <>
+                                <CamperList campers={campers} />
+                                <Button
+                                    className={styles.load_more_button}
+                                    onClick={() => campersQuery.fetchNextPage()}
+                                >
+                                    Load more
+                                </Button>
+                            </>
+                        ) : (
+                            <NoCampersFound
+                                clearFilters={clearFilter}
+                                viewAllCampers={viewAllCampers}
+                            ></NoCampersFound>
+                        )}
                     </div>
                 </div>
             </section>
